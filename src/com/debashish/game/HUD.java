@@ -9,11 +9,17 @@ public class HUD {
 	private int greenMin = 66;
 	private int yellowMin = 33;
 	
-	private int score = 0, level = 1;
+	private int score = 0, level = 1, timer = 60;
 	
 	public void tick(){
 		PLAYER_HEALTH = Game.clamp(PLAYER_HEALTH, 0, 100);
 		score++;
+		if(PLAYER_HEALTH <= 0){
+			if(timer <= 0){
+				System.exit(0); //TEMPORARY END GAME
+			} else timer--;
+			
+		}
 	}
 	
 	public void render(Graphics2D g2){

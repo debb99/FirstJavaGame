@@ -36,7 +36,8 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public Game(){
-		menu = new Menu();
+		menu = new Menu(this);
+		this.addMouseListener(menu);
 		gameState = STATE.Menu;
 		handler = new Handler();
 		this.addKeyListener(new KeyInput(handler));
@@ -45,12 +46,6 @@ public class Game extends Canvas implements Runnable{
 		new Window(WIDTH, HEIGHT, "Debashish's Java Game", this);
 		
 		r = new Random();
-		
-		
-		if(gameState == STATE.Game){
-			handler.addObject(new Player(WIDTH/2 - 16, HEIGHT/2 - 16, ID.Player, handler));
-			handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 32), r.nextInt(Game.HEIGHT - 32), ID.BasicEnemy, handler));
-		}
 		hud = new HUD();
 		spawner = new Spawn(handler, hud);
 	}
@@ -109,13 +104,14 @@ public class Game extends Canvas implements Runnable{
 		if(gameState == STATE.Game){
 			hud.tick();
 			try {
-				thread.sleep(1);
+				Thread.sleep(1);
 			} catch (InterruptedException e) {
 				
 				e.printStackTrace();
 			} //give HUD enough time so that spawner won't have null variables
 			spawner.tick();
 		}
+		System.gc();
 	}
 	
 	private void render(){
@@ -143,6 +139,13 @@ public class Game extends Canvas implements Runnable{
 		g2.dispose();
 		g.dispose();
 		bs.show();
+	}
+	
+	public synchronized void beginGame(){
+		if(gameState == STATE.Game){
+			handler.addObject(new Player(WIDTH/2 - 16, HEIGHT/2 - 16, ID.Player, handler));
+			handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 32), r.nextInt(Game.HEIGHT - 32), ID.BasicEnemy, handler));
+		}
 	}
 	
 	public static float clamp(float var, float min, float max){
