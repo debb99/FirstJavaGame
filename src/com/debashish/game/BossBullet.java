@@ -28,7 +28,7 @@ public class BossBullet extends GameObject {
 		if(y >= Game.HEIGHT){
 			handler.removeObject(this);
 		}
-		//handler.addObject(new Trail(x, y, 16, 16, ID.Trail, Color.ORANGE, 0.5F, handler));
+		//handler.addObject(new Trail(x, y, 16, 16, ID.Trail, Color.ORANGE, 0.09F, handler));
 	}
 
 	@Override

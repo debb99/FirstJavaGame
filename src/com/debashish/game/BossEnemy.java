@@ -7,8 +7,8 @@ import java.awt.Rectangle;
 public class BossEnemy extends GameObject {
 	
 	private Handler handler;
-	private int timer = 100;
-	private int timer2= 100;
+	private int timer = 120;
+	private int timer2= 120;
 	
 	public BossEnemy(int x, int y, ID id, Handler handler) {
 		super(x, y, id);

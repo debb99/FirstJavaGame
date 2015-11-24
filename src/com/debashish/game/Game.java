@@ -20,6 +20,7 @@ public class Game extends Canvas implements Runnable{
 	
 	private Handler handler;
 	private HUD hud;
+	private Menu menu;
 	
 	private Spawn spawner;
 	
@@ -35,13 +36,17 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public Game(){
+		menu = new Menu();
+		gameState = STATE.Menu;
 		handler = new Handler();
 		this.addKeyListener(new KeyInput(handler));
 		
+		hud = new HUD();
 		new Window(WIDTH, HEIGHT, "Debashish's Java Game", this);
 		
 		r = new Random();
-		gameState = STATE.Menu;
+		
+		
 		if(gameState == STATE.Game){
 			handler.addObject(new Player(WIDTH/2 - 16, HEIGHT/2 - 16, ID.Player, handler));
 			handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 32), r.nextInt(Game.HEIGHT - 32), ID.BasicEnemy, handler));
@@ -103,6 +108,12 @@ public class Game extends Canvas implements Runnable{
 		handler.tick();
 		if(gameState == STATE.Game){
 			hud.tick();
+			try {
+				thread.sleep(1);
+			} catch (InterruptedException e) {
+				
+				e.printStackTrace();
+			} //give HUD enough time so that spawner won't have null variables
 			spawner.tick();
 		}
 	}
@@ -126,6 +137,8 @@ public class Game extends Canvas implements Runnable{
 		handler.render(g2);
 		if(gameState == STATE.Game){
 			hud.render(g2);
+		} else if (gameState == STATE.Menu){
+			menu.render(g2);
 		}
 		g2.dispose();
 		g.dispose();
