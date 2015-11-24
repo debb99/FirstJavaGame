@@ -23,8 +23,15 @@ public class Game extends Canvas implements Runnable{
 	
 	private Spawn spawner;
 	
+	public enum STATE{
+		Menu,
+		Game
+	};
+	
+	public STATE gameState;
+	
 	public static void main(String[] args) {
-		new Game(); 
+		new Game();
 	}
 	
 	public Game(){
@@ -34,11 +41,13 @@ public class Game extends Canvas implements Runnable{
 		new Window(WIDTH, HEIGHT, "Debashish's Java Game", this);
 		
 		r = new Random();
+		gameState = STATE.Menu;
+		if(gameState == STATE.Game){
+			handler.addObject(new Player(WIDTH/2 - 16, HEIGHT/2 - 16, ID.Player, handler));
+			handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 32), r.nextInt(Game.HEIGHT - 32), ID.BasicEnemy, handler));
+		}
 		hud = new HUD();
 		spawner = new Spawn(handler, hud);
-		
-		handler.addObject(new Player(WIDTH/2 - 16, HEIGHT/2 - 16, ID.Player, handler));
-		handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 32), r.nextInt(Game.HEIGHT - 32), ID.BasicEnemy, handler));
 	}
 
 	public synchronized void start(){
@@ -92,8 +101,10 @@ public class Game extends Canvas implements Runnable{
 	
 	private void tick(){
 		handler.tick();
-		hud.tick();
-		spawner.tick();
+		if(gameState == STATE.Game){
+			hud.tick();
+			spawner.tick();
+		}
 	}
 	
 	private void render(){
@@ -113,7 +124,9 @@ public class Game extends Canvas implements Runnable{
 		g2.setColor(Color.BLACK);
 		g2.fillRect(0, 0, WIDTH, HEIGHT);
 		handler.render(g2);
-		hud.render(g2);
+		if(gameState == STATE.Game){
+			hud.render(g2);
+		}
 		g2.dispose();
 		g.dispose();
 		bs.show();
