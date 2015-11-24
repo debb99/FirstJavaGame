@@ -3,19 +3,18 @@ package com.debashish.game;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.util.Random;
 
 public class Player extends GameObject {
 	private Handler handler;
-	
-	public Player(int x, int y, ID id, Handler handler) {
-		super(x, y, id);
+	private int collisionGrace = 120; //2 seconds
+	public Player(float f, float g, ID id, Handler handler) {
+		super(f, g, id);
 		this.handler = handler;
 	}
 
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(x, y, 32, 32);
+		return new Rectangle((int)x, (int)y, 32, 32);
 	}
 
 	@Override
@@ -32,20 +31,27 @@ public class Player extends GameObject {
 	}
 	
 	private void collision(){
-		for(int i = 0; i < handler.object.size(); i++){
-			GameObject tempObject = handler.object.get(i);
-			if(tempObject.id == ID.BasicEnemy || tempObject.id == ID.FastEnemy){
-				if(getBounds().intersects(tempObject.getBounds())){
-					HUD.PLAYER_HEALTH -= 2;
+		if(collisionGrace <= 0){
+			for(int i = 0; i < handler.object.size(); i++){
+				GameObject tempObject = handler.object.get(i);
+				if(tempObject.id == ID.BasicEnemy || tempObject.id == ID.FastEnemy || tempObject.id == ID.HomingEnemy){
+					if(getBounds().intersects(tempObject.getBounds())){
+						HUD.PLAYER_HEALTH -= 2;
+					}
+				}
+				if(tempObject.getId() == ID.BossEnemy){
+					if(getBounds().intersects(tempObject.getBounds())){
+						HUD.PLAYER_HEALTH = 0;
+					}
 				}
 			}
-		}
+		} else collisionGrace--;
 	}
 
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.WHITE);
-		g.fillRect(x, y, 32, 32);
+		g.fillRect((int)x, (int)y, 32, 32);
 	}
 	
 	public int xSpeed = 0;

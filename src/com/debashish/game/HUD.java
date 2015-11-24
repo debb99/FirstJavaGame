@@ -1,11 +1,11 @@
 package com.debashish.game;
 
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class HUD {
 	
-	public static int PLAYER_HEALTH = 100;
+	public static float PLAYER_HEALTH = 100;
 	private int greenMin = 66;
 	private int yellowMin = 33;
 	
@@ -16,18 +16,18 @@ public class HUD {
 		score++;
 	}
 	
-	public void render(Graphics g){
-		g.setColor(Color.GRAY);
-		g.fillRect(15, 15, 200, 32);
+	public void render(Graphics2D g2){
+		g2.setColor(Color.GRAY);
+		g2.fillRect(15, 15, 200, 32);
 		
-		g.setColor(PLAYER_HEALTH > greenMin ? Color.GREEN : PLAYER_HEALTH > yellowMin ? Color.YELLOW : Color.RED);
-		g.fillRect(15, 15, PLAYER_HEALTH * 2, 32);
+		g2.setColor(PLAYER_HEALTH > greenMin ? Color.GREEN : PLAYER_HEALTH > yellowMin ? Color.YELLOW : Color.RED);
+		g2.fillRect(15, 15, (int)PLAYER_HEALTH * 2, 32);
 		
-		g.setColor(Color.WHITE);
-		g.drawRect(15, 15, 200, 32);
+		g2.setColor(Color.WHITE);
+		g2.drawRect(15, 15, 200, 32);
 		
-		g.drawString("SCORE: " + score, 15, 65);
-		g.drawString("LEVEL: " + level, 15, 80);
+		g2.drawString("SCORE: " + score, 15, 65);
+		g2.drawString("LEVEL: " + level, 15, 80);
 	}
 	
 	public int getScore() {

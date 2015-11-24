@@ -4,15 +4,15 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class BasicEnemy extends GameObject {
+public class BossBullet extends GameObject {
 	
 	private Handler handler;
 	
-	public BasicEnemy(int x, int y, ID id, Handler handler) {
-		super(x, y, id);
+	public BossBullet(float f, float g, ID id, Handler handler) {
+		super(f, g, id);
 		this.handler = handler;
-		velX = (r.nextInt(2) + 5);
-		velY = (r.nextInt(2) + 5);
+		velX = r.nextInt(5 - -5) - 5;
+		velY = 5;
 	}
 	
 	@Override
@@ -25,19 +25,15 @@ public class BasicEnemy extends GameObject {
 		x += velX;
 		y += velY;
 		
-		if(y <= 0 || y >= Game.HEIGHT - 16){
-			velY *= -1;
+		if(y >= Game.HEIGHT){
+			handler.removeObject(this);
 		}
-		if(x <= 0 || x >= Game.WIDTH - 16){
-			velX *= -1;
-		}
-		
-		handler.addObject(new Trail(x, y, 16, 16, ID.Trail, Color.RED, 0.035F, handler));
+		//handler.addObject(new Trail(x, y, 16, 16, ID.Trail, Color.ORANGE, 0.5F, handler));
 	}
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.RED);
+		g.setColor(Color.ORANGE);
 		g.fillRect((int)x, (int)y, 16, 16);
 	}
 

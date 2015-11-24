@@ -2,35 +2,38 @@ package com.debashish.game;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.Random;
 
 public abstract class GameObject {
-	protected int x, y;
+	protected float x, y;
 	protected ID id;
-	protected int velX, velY;
+	protected float velX, velY;
+	protected Random r;
 	
-	public GameObject(int x, int y, ID id){
-		this.x = x;
-		this.y = y;
+	public GameObject(float f, float g, ID id){
+		this.x = f;
+		this.y = g;
 		this.id = id;
+		this.r = new Random();
 	}
 	
 	public abstract void tick();
 	public abstract void render(Graphics g);
 	public abstract Rectangle getBounds();
 
-	public void setX(int x) {
+	public void setX(float x) {
 		this.x = x;
 	}
 	
-	public void setY(int y) {
+	public void setY(float y) {
 		this.y = y;
 	}
 	
-	public int getX() {
+	public float getX() {
 		return x;
 	}
 	
-	public int getY() {
+	public float getY() {
 		return y;
 	}
 	
@@ -42,19 +45,19 @@ public abstract class GameObject {
 		return id;
 	}
 	
-	public void setVelX(int velX) {
+	public void setVelX(float velX) {
 		this.velX = velX;
 	}
 	
-	public void setVelY(int velY) {
+	public void setVelY(float velY) {
 		this.velY = velY;
 	}
 	
-	public int getVelX() {
+	public float getVelX() {
 		return velX;
 	}
 	
-	public int getVelY() {
+	public float getVelY() {
 		return velY;
 	}
 }

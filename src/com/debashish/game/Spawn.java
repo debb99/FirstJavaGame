@@ -17,21 +17,23 @@ public class Spawn {
 	
 	public void tick(){
 		scoreKeep++;
-		if(scoreKeep > 500){
+		if(scoreKeep > 250){
 			scoreKeep = 0;
 			hud.setLevel(hud.getLevel() + 1);
 			
 			if(hud.getLevel() == 2){
 				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));
+				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));
 			}
-			
 			if(hud.getLevel() == 3){
-				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));
-				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));
-			}
-			
-			if(hud.getLevel() == 4){
 				handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.FastEnemy, handler));
+			}
+			if(hud.getLevel() == 4){
+				handler.addObject(new HomingEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.HomingEnemy, handler));
+			}
+			if(hud.getLevel() == 5){
+				handler.clearEnemies();
+				handler.addObject(new BossEnemy(Game.WIDTH / 2 - 48, -120, ID.BossEnemy, handler));
 			}
 		}
 		

@@ -3,6 +3,8 @@ package com.debashish.game;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
@@ -35,8 +37,8 @@ public class Game extends Canvas implements Runnable{
 		hud = new HUD();
 		spawner = new Spawn(handler, hud);
 		
-		handler.addObject(new Player(WIDTH/2 - 32, HEIGHT/2 - 32, ID.Player, handler));
-		handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.FastEnemy, handler));
+		handler.addObject(new Player(WIDTH/2 - 16, HEIGHT/2 - 16, ID.Player, handler));
+		handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 32), r.nextInt(Game.HEIGHT - 32), ID.BasicEnemy, handler));
 	}
 
 	public synchronized void start(){
@@ -102,18 +104,22 @@ public class Game extends Canvas implements Runnable{
 		}
 	
 		Graphics g = bs.getDrawGraphics();
+		Graphics2D g2 = (Graphics2D)g;
+		RenderingHints rh = new RenderingHints(
+				RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		g2.setRenderingHints(rh);
 		
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, WIDTH, HEIGHT);
-		
-		handler.render(g);
-		
-		hud.render(g);
+		g2.setColor(Color.BLACK);
+		g2.fillRect(0, 0, WIDTH, HEIGHT);
+		handler.render(g2);
+		hud.render(g2);
+		g2.dispose();
 		g.dispose();
 		bs.show();
 	}
 	
-	public static int clamp(int var, int min, int max){
+	public static float clamp(float var, float min, float max){
 		if(var >= max) return var = max;
 		if(var <= min) return var = min;
 		return var;

@@ -10,13 +10,13 @@ public class FastEnemy extends GameObject{
 		public FastEnemy(int x, int y, ID id, Handler handler) {
 			super(x, y, id);
 			this.handler = handler;
-			setVelX(10);
-			setVelY(10);
+			velX = r.nextInt(5) + 7;
+			velY = r.nextInt(5) + 7;
 		}
 		
 		@Override
 		public Rectangle getBounds() {
-			return new Rectangle(x, y, 16, 16);
+			return new Rectangle((int)x, (int)y, 16, 16);
 		}	
 
 		@Override
@@ -37,7 +37,7 @@ public class FastEnemy extends GameObject{
 		@Override
 		public void render(Graphics g) {
 			g.setColor(Color.YELLOW);
-			g.fillRect(x, y, 16, 16);
+			g.fillRect((int)x, (int)y, 16, 16);
 		}
 
 	}

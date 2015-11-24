@@ -11,7 +11,7 @@ public class Window extends Canvas {
 	
 	public Window(int width, int height, String title, Game game){
 		JFrame frame = new JFrame(title);
-		Dimension size = new Dimension(width, height);
+		Dimension size = new Dimension((int)width, (int)height);
 		frame.getContentPane().setPreferredSize(size); //USING THE REAL VALUES WITH NO DECORATION
 		frame.getContentPane().setMinimumSize(size);
 		frame.getContentPane().setMaximumSize(size);
