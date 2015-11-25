@@ -1,6 +1,7 @@
 package com.debashish.game;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 
 public class HUD {
@@ -22,6 +23,7 @@ public class HUD {
 		}
 	}
 	
+	Font hudFont = new Font(Font.DIALOG_INPUT, Font.PLAIN, 20);
 	public void render(Graphics2D g2){
 		g2.setColor(Color.GRAY);
 		g2.fillRect(15, 15, 200, 32);
@@ -32,8 +34,9 @@ public class HUD {
 		g2.setColor(Color.WHITE);
 		g2.drawRect(15, 15, 200, 32);
 		
-		g2.drawString("SCORE: " + score, 15, 65);
-		g2.drawString("LEVEL: " + level, 15, 80);
+		g2.setFont(hudFont);
+		g2.drawString("SCORE: " + score, 15, 70);
+		g2.drawString("LEVEL: " + level, 15, 90);
 	}
 	
 	public int getScore() {

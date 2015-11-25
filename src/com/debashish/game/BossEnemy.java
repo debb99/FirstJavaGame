@@ -34,8 +34,8 @@ public class BossEnemy extends GameObject {
 		if(timer <= 0){
 			if(velX == 0) velX = 3;
 			if(timer2 <= 0){
-				if(r.nextInt(7) == 0){
-					handler.addObject(new BossBullet(x + 48, y + 90, ID.BasicEnemy, handler));
+				if(r.nextInt(3) == 0){
+					handler.addObject(new BossBullet(x + 48, y + 90, ID.BasicEnemy, handler)); //BULLET SPAWNS
 				}
 			} else timer2--;
 		} else timer--;
@@ -50,7 +50,7 @@ public class BossEnemy extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.RED);
+		g.setColor(Color.BLACK);
 		g.fillRect((int)x, (int)y, 96, 96);
 	}
 

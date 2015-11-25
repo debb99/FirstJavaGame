@@ -15,6 +15,7 @@ public class Menu extends MouseAdapter{
 	Font myFont1;
 	Font myFont2;
 	Font myFont3;
+	Font myFont4;
 	Rectangle playBox;
 	Rectangle helpBox;
 	Rectangle exitBox;
@@ -23,9 +24,11 @@ public class Menu extends MouseAdapter{
 	
 	public Menu(Game game) {
 		this.game = game;
-		myFont1 = new Font(Font.DIALOG_INPUT, Font.PLAIN, 50);
+		myFont1 = new Font(Font.MONOSPACED, Font.BOLD, 70);
 		myFont2 = new Font(Font.DIALOG_INPUT ,Font.PLAIN, 60);
 		myFont3 = new Font(Font.DIALOG_INPUT, Font.PLAIN, 40);
+		myFont4 = new Font(Font.DIALOG_INPUT, Font.ITALIC, 30);
+		
 		playBox = new Rectangle(Game.WIDTH / 4, Game.HEIGHT / 4, Game.WIDTH / 2, Game.HEIGHT / 5);
 		helpBox = new Rectangle(Game.WIDTH / 3, Game.HEIGHT / 2, Game.WIDTH / 3, Game.HEIGHT / 7);
 		exitBox = new Rectangle(Game.WIDTH / 3, Game.HEIGHT / 2 + 90, Game.WIDTH / 3, Game.HEIGHT / 7);
@@ -81,7 +84,7 @@ public class Menu extends MouseAdapter{
 		
 		g2.setFont(myFont1);
 		g2.setColor(Color.WHITE);
-		drawCenteredString("Debashish's Java Game", 0, 0, Game.WIDTH, Game.HEIGHT / 4, g2);
+		drawCenteredString("Bullet Time", 0, 0, Game.WIDTH, Game.HEIGHT / 4, g2);
 		
 		g2.setFont(myFont2);
 			g2.setColor(Color.GREEN);
@@ -94,6 +97,9 @@ public class Menu extends MouseAdapter{
 		g2.setColor(Color.RED);
 			g2.draw(exitBox);
 			drawCenteredString("Exit", exitBox.x, exitBox.y, exitBox.width, exitBox.height, g2);
+		g2.setColor(Color.LIGHT_GRAY);
+			g2.setFont(myFont4);
+			drawCenteredString("By Debashish Biswas", 0, Game.HEIGHT / 3 + 30, Game.WIDTH, Game.HEIGHT, g2);
 	}
 
 	public void drawCenteredString(String s, int xOffset, int yOffset, int w, int h, Graphics2D g2) {

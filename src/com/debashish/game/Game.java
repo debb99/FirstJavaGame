@@ -111,7 +111,6 @@ public class Game extends Canvas implements Runnable{
 			} //give HUD enough time so that spawner won't have null variables
 			spawner.tick();
 		}
-		System.gc();
 	}
 	
 	private void render(){
