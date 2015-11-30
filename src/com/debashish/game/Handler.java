@@ -3,6 +3,8 @@ package com.debashish.game;
 import java.awt.Graphics2D;
 import java.util.LinkedList;
 
+import com.debashish.game.Game.STATE;
+
 public class Handler {
 	LinkedList<GameObject> object = new LinkedList<>();
 	
@@ -32,7 +34,9 @@ public class Handler {
 			tempObject = object.get(i);
 			if(tempObject.id == ID.Player){
 				object.clear();
-				addObject(new Player(tempObject.getX(), tempObject.getY(), ID.Player, this));
+				if(Game.gameState != STATE.EndScreen){
+					addObject(new Player(tempObject.getX(), tempObject.getY(), ID.Player, this));
+				}
 			}
 		}
 	}

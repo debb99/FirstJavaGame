@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
+import com.debashish.game.Game.STATE;
+
 public class HUD {
 	
 	public static float PLAYER_HEALTH = 100;
@@ -16,10 +18,7 @@ public class HUD {
 		PLAYER_HEALTH = Game.clamp(PLAYER_HEALTH, 0, 100);
 		score++;
 		if(PLAYER_HEALTH <= 0){
-			if(timer <= 0){
-				System.exit(0); //TEMPORARY END GAME
-			} else timer--;
-			
+			Game.gameState = STATE.EndScreen;
 		}
 	}
 	

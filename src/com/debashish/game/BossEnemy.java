@@ -50,7 +50,7 @@ public class BossEnemy extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.BLACK);
+		g.setColor(Color.RED);
 		g.fillRect((int)x, (int)y, 96, 96);
 	}
 

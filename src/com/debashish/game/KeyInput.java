@@ -40,6 +40,9 @@ public class KeyInput extends KeyAdapter{
 					keyDown[3] = true;
 				}
 			}
+			if(key == KeyEvent.VK_Q){
+				HUD.PLAYER_HEALTH--;
+			}
 		}
 		
 	}
