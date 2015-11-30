@@ -41,7 +41,7 @@ public class KeyInput extends KeyAdapter{
 				}
 			}
 			if(key == KeyEvent.VK_Q){
-				HUD.PLAYER_HEALTH--;
+				HUD.PLAYER_HEALTH = 0;
 			}
 		}
 		

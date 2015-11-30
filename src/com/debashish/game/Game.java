@@ -27,6 +27,7 @@ public class Game extends Canvas implements Runnable{
 	public enum STATE{
 		Menu,
 		Game,
+		Help,
 		EndScreen
 	};
 	
@@ -41,11 +42,11 @@ public class Game extends Canvas implements Runnable{
 		handler = new Handler();
 		this.addKeyListener(new KeyInput(handler));
 		
-		menu = new Menu(this, handler);
-		this.addMouseListener(menu);
-		
 		hud = new HUD();
 		new Window(WIDTH, HEIGHT, "Debashish's Java Game", this);
+		
+		menu = new Menu(this, handler, hud);
+		this.addMouseListener(menu);
 		
 		r = new Random();
 		hud = new HUD();
