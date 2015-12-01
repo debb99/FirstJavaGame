@@ -1,16 +1,16 @@
 package com.debashish.game;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
-import java.awt.image.ImageObserver;
 
 public class BossEnemy extends GameObject {
 	
 	private Handler handler;
-	private int timer = 120;
+	private int timer = 150;
 	private int timer2= 120;
 	private Game game;
 	
@@ -20,7 +20,7 @@ public class BossEnemy extends GameObject {
 		this.game = game;
 		velX = 0;
 		velY = 2;
-		sprite = Toolkit.getDefaultToolkit().getImage("ActualBoss.png");
+		sprite = Toolkit.getDefaultToolkit().getImage(getClass().getResource("ActualBossTransparent.png"));
 	}
 	
 	@Override
@@ -41,10 +41,10 @@ public class BossEnemy extends GameObject {
 			if(velX == 0) velX = 3;
 			if(timer2 <= 0){
 				if(r.nextInt(5) == 0){ //BULLET SPAWNS
-					handler.addObject(new BossBullet(x + 48, y + 90, ID.BasicEnemy, handler));
+					handler.addObject(new BossBullet(x + 35, y + 85, ID.BasicEnemy, handler));
 				}
-			} else timer2--;
-		} else timer--;
+			} else timer2--; //moving horizontally
+		} else timer--; //moving vertically
 		
 		if(x <= 20 || x >= Game.WIDTH - 116){
 			velX *= -1;
@@ -56,8 +56,9 @@ public class BossEnemy extends GameObject {
 
 	@Override
 	public void render(Graphics g){
-		Graphics2D g2 = (Graphics2D)g;	
-		//g2.drawImage(sprite, (int)x, (int)y, (int)x + 96, (int)y + 96, 0, 0, 96, 96, game);
+		Graphics2D g2 = (Graphics2D)g;
+		g2.setColor(Color.BLACK);
+		g2.drawImage(sprite, (int)x, (int)y, 96, 96, null);
 	}
 	
 	private Image sprite;

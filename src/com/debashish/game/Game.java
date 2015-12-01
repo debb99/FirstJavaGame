@@ -40,7 +40,7 @@ public class Game extends Canvas implements Runnable{
 	public Game(){
 		gameState = STATE.Menu;
 		handler = new Handler();
-		this.addKeyListener(new KeyInput(handler));
+		this.addKeyListener(new KeyInput(handler, this));
 		
 		menu = new Menu(this, handler);
 		this.addMouseListener(menu);
@@ -120,7 +120,7 @@ public class Game extends Canvas implements Runnable{
 	private void render(){
 		BufferStrategy bs = this.getBufferStrategy();
 		if(bs == null){
-			this.createBufferStrategy(2);
+			this.createBufferStrategy(3);
 			return;
 		}
 	
@@ -145,6 +145,9 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public synchronized void beginGame(){
+		HUD.PLAYER_HEALTH = 100;
+		HUD.score = 0;
+		HUD.level = 1;
 		if(gameState == STATE.Game){
 			handler.addObject(new Player(WIDTH/2 - 16, HEIGHT/2 - 16, ID.Player, handler));
 			handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 32), r.nextInt(Game.HEIGHT - 32), ID.BasicEnemy, handler));

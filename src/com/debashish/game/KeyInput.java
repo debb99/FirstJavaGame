@@ -3,13 +3,18 @@
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import com.debashish.game.Game.STATE;
+
 public class KeyInput extends KeyAdapter{
 	private Handler handler;
 	
 	private boolean[] keyDown = new boolean[4];
+
+	private Game game;
 	
-	public KeyInput(Handler handler) {
+	public KeyInput(Handler handler, Game game) {
 		this.handler = handler;
+		this.game = game;
 		
 		for(boolean i : keyDown){
 			i = false;
@@ -40,6 +45,7 @@ public class KeyInput extends KeyAdapter{
 					keyDown[3] = true;
 				}
 			}
+			
 			if(key == KeyEvent.VK_Q){
 				HUD.PLAYER_HEALTH = 0;
 			}
@@ -85,5 +91,15 @@ public class KeyInput extends KeyAdapter{
 		}
 		
 		if(key == KeyEvent.VK_ESCAPE) System.exit(0);
+
+		if(key == KeyEvent.VK_ENTER){
+			if(Game.gameState == STATE.Menu){
+				Game.gameState = STATE.Game;
+				game.beginGame();
+			}
+			if (Game.gameState == STATE.EndScreen){
+				Game.gameState = STATE.Menu;
+			}
+		}
 	}
 }

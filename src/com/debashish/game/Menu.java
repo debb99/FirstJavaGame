@@ -63,9 +63,6 @@ public class Menu extends MouseAdapter {
 			}
 		} else if (Game.gameState == STATE.EndScreen) {
 			if (isInside(retryBox, mx, my)) {
-				HUD.PLAYER_HEALTH = 100;
-				HUD.score = 0;
-				HUD.level = 0;
 				Game.gameState = STATE.Menu;
 			}
 			if (isInside(exitBox, mx, my)) {
@@ -120,7 +117,7 @@ public class Menu extends MouseAdapter {
 			g2.setColor(Color.RED);
 			g2.draw(exitBox);
 			drawCenteredString("Exit", exitBox.x, exitBox.y, exitBox.width, exitBox.height, g2);
-
+			
 			g2.setColor(Color.LIGHT_GRAY);
 			g2.setFont(myFont4);
 			drawCenteredString("Programming by: Debashish Biswas", 0, Game.HEIGHT / 3 + 30, Game.WIDTH, Game.HEIGHT, g2);
