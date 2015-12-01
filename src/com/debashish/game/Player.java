@@ -26,8 +26,7 @@ public class Player extends GameObject {
 		y = Game.clamp(y, 0, Game.HEIGHT - 32);
 		
 		collision();
-		
-		handler.addObject(new Trail(x, y, 32, 32, ID.Trail, Color.WHITE, 0.1F, handler));
+		handler.addObject(new Trail(x, y, 32, 32, ID.Trail, renderColor, 0.1F, handler));
 	}
 	
 	private void collision(){
@@ -36,7 +35,7 @@ public class Player extends GameObject {
 				GameObject tempObject = handler.object.get(i);
 				if(tempObject.id == ID.BasicEnemy || tempObject.id == ID.FastEnemy || tempObject.id == ID.HomingEnemy){
 					if(getBounds().intersects(tempObject.getBounds())){
-						HUD.PLAYER_HEALTH -= 2;
+						HUD.PLAYER_HEALTH -= 1;
 					}
 				}
 				if(tempObject.getId() == ID.BossEnemy){
@@ -50,9 +49,11 @@ public class Player extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.WHITE);
+		g.setColor(renderColor);
 		g.fillRect((int)x, (int)y, 32, 32);
 	}
+	
+	private Color renderColor = Color.WHITE;
 	
 	public int xSpeed = 0;
 	public int ySpeed = 0;

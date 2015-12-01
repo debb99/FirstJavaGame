@@ -31,12 +31,12 @@ public class FastEnemy extends GameObject{
 				velX *= -1;
 			}
 			
-			handler.addObject(new Trail(x, y, 16, 16, ID.Trail, Color.YELLOW, 0.075F, handler));
+			handler.addObject(new Trail(x, y, 16, 16, ID.Trail, Color.CYAN, 0.09F, handler));
 		}
 
 		@Override
 		public void render(Graphics g) {
-			g.setColor(Color.YELLOW);
+			g.setColor(Color.CYAN);
 			g.fillRect((int)x, (int)y, 16, 16);
 		}
 

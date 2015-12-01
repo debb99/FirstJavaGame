@@ -23,12 +23,10 @@ public class Menu extends MouseAdapter {
 
 	private Game game;
 	private Handler handler;
-	private HUD hud;
 
-	public Menu(Game game, Handler handler, HUD hud) {
+	public Menu(Game game, Handler handler) {
 		this.game = game;
 		this.handler = handler;
-		this.hud = hud;
 
 		myFont1 = new Font(Font.DIALOG_INPUT, Font.BOLD, 70);
 		myFont2 = new Font(Font.DIALOG_INPUT, Font.PLAIN, 60);
@@ -125,7 +123,8 @@ public class Menu extends MouseAdapter {
 
 			g2.setColor(Color.LIGHT_GRAY);
 			g2.setFont(myFont4);
-			drawCenteredString("By Debashish Biswas", 0, Game.HEIGHT / 3 + 30, Game.WIDTH, Game.HEIGHT, g2);
+			drawCenteredString("Programming by: Debashish Biswas", 0, Game.HEIGHT / 3 + 30, Game.WIDTH, Game.HEIGHT, g2);
+			drawCenteredString("Artwork by: Jarren McBride", 0, Game.HEIGHT / 3 + 60, Game.WIDTH, Game.HEIGHT, g2);
 		} else if (Game.gameState == STATE.Help) {
 			g2.setFont(myFont1);
 			g2.setColor(Color.ORANGE);

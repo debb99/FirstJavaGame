@@ -32,7 +32,7 @@ public class BasicEnemy extends GameObject {
 			velX *= -1;
 		}
 		
-		handler.addObject(new Trail(x, y, 16, 16, ID.Trail, Color.RED, 0.035F, handler));
+		handler.addObject(new Trail(x, y, 16, 16, ID.Trail, Color.RED, 0.05F, handler));
 	}
 
 	@Override
