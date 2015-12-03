@@ -45,7 +45,6 @@ public class KeyInput extends KeyAdapter{
 					keyDown[3] = true;
 				}
 			}
-			
 			if(key == KeyEvent.VK_Q){
 				HUD.PLAYER_HEALTH = 0;
 			}
@@ -100,6 +99,13 @@ public class KeyInput extends KeyAdapter{
 			if (Game.gameState == STATE.EndScreen){
 				Game.gameState = STATE.Menu;
 			}
+		}
+		
+		if(key == KeyEvent.VK_P){
+			if(Game.gameState == STATE.Game){
+				Game.togglePaused();
+			}
+			
 		}
 	}
 }

@@ -120,8 +120,8 @@ public class Menu extends MouseAdapter {
 			
 			g2.setColor(Color.LIGHT_GRAY);
 			g2.setFont(myFont4);
-			drawCenteredString("Programming by: Debashish Biswas", 0, Game.HEIGHT / 3 + 30, Game.WIDTH, Game.HEIGHT, g2);
-			drawCenteredString("Artwork by: Jarren McBride", 0, Game.HEIGHT / 3 + 60, Game.WIDTH, Game.HEIGHT, g2);
+			drawCenteredString("Programming by: Debashish Biswas", 0, Game.HEIGHT / 3 + 25, Game.WIDTH, Game.HEIGHT, g2);
+			drawCenteredString("'Art'work by: Jarren McBride", 0, Game.HEIGHT / 3 + 56, Game.WIDTH, Game.HEIGHT, g2);
 		} else if (Game.gameState == STATE.Help) {
 			g2.setFont(myFont1);
 			g2.setColor(Color.ORANGE);
@@ -161,7 +161,7 @@ public class Menu extends MouseAdapter {
 
 	}
 
-	public void drawCenteredString(String s, int xOffset, int yOffset, int w, int h, Graphics2D g2) {
+	public static void drawCenteredString(String s, int xOffset, int yOffset, int w, int h, Graphics2D g2) {
 		FontMetrics fm = g2.getFontMetrics();
 		int x = (w - fm.stringWidth(s)) / 2;
 		int y = (fm.getAscent() + (h - (fm.getAscent() + fm.getDescent())) / 2);

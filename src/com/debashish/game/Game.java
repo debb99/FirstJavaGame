@@ -2,6 +2,7 @@ package com.debashish.game;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -15,6 +16,7 @@ public class Game extends Canvas implements Runnable{
 	public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
 	private Thread thread;
 	private boolean running = false;
+	private static boolean paused = false;
 	
 	private Random r;
 	
@@ -104,17 +106,20 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	private void tick(){
-		handler.tick();
-		if(gameState == STATE.Game){
-			hud.tick();
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				
-				e.printStackTrace();
-			} //give HUD enough time so that spawner won't have null variables
-			spawner.tick();
+		if(!paused){
+			if(gameState == STATE.Game){
+				hud.tick();
+				handler.tick();
+				try {
+					Thread.sleep(1);
+				} catch (InterruptedException e) {
+					
+					e.printStackTrace();
+				} //give HUD enough time so that spawner won't have null variables
+				spawner.tick();
+			}
 		}
+		
 	}
 	
 	private void render(){
@@ -139,6 +144,13 @@ public class Game extends Canvas implements Runnable{
 		} else {
 			menu.render(g2);
 		}
+		
+		if(paused){
+			g2.setFont(new Font(Font.DIALOG_INPUT, Font.ITALIC + Font.BOLD, 70));
+			g2.setColor(Color.WHITE);
+			Menu.drawCenteredString("GAME PAUSED", 0, 0, WIDTH, HEIGHT, g2);
+		}
+		
 		g2.dispose();
 		g.dispose();
 		bs.show();
@@ -149,8 +161,8 @@ public class Game extends Canvas implements Runnable{
 		HUD.score = 0;
 		HUD.level = 1;
 		if(gameState == STATE.Game){
-			handler.addObject(new Player(WIDTH/2 - 16, HEIGHT/2 - 16, ID.Player, handler));
-			handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 32), r.nextInt(Game.HEIGHT - 32), ID.BasicEnemy, handler));
+			handler.addObject(new Player(WIDTH/2 - 16, HEIGHT/2 - 16, 32, 32, ID.Player, handler));
+			handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 32), r.nextInt(Game.HEIGHT - 32), 16, 16, ID.BasicEnemy, handler));
 		}
 	}
 	
@@ -158,6 +170,10 @@ public class Game extends Canvas implements Runnable{
 		if(var >= max) return var = max;
 		if(var <= min) return var = min;
 		return var;
+	}
+	
+	public static void togglePaused(){
+		paused = !paused;
 	}
 
 }

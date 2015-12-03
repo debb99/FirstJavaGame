@@ -8,8 +8,8 @@ public class BossBullet extends GameObject {
 	
 	private Handler handler;
 	
-	public BossBullet(float f, float g, ID id, Handler handler) {
-		super(f, g, id);
+	public BossBullet(float f, float g, float wid, float hei, ID id, Handler handler) {
+		super(f, g, wid, hei, id);
 		this.handler = handler;
 		velX = r.nextInt(5 - -5) - 5;
 		velY = 5;
@@ -17,7 +17,7 @@ public class BossBullet extends GameObject {
 	
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle((int)x, (int)y, 16, 16);
+		return new Rectangle((int)x, (int)y, (int)width, (int)height);
 	}	
 
 	@Override
@@ -28,13 +28,13 @@ public class BossBullet extends GameObject {
 		if(y >= Game.HEIGHT){
 			handler.removeObject(this);
 		}
-		//handler.addObject(new Trail(x, y, 16, 16, ID.Trail, Color.ORANGE, 0.09F, handler));
+		//handler.addObject(new Trail(x, y, width, height, ID.Trail, Color.ORANGE, 0.09F, handler));
 	}
 
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.ORANGE);
-		g.fillRect((int)x, (int)y, 16, 16);
+		g.fillRect((int)x, (int)y, (int)width, (int)height);
 	}
 
 }

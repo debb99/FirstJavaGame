@@ -7,8 +7,8 @@ import java.awt.Rectangle;
 public class Player extends GameObject {
 	private Handler handler;
 	private int collisionGrace = 120; //2 seconds
-	public Player(float f, float g, ID id, Handler handler) {
-		super(f, g, id);
+	public Player(float f, float g, float wid, float hei, ID id, Handler handler) {
+		super(f, g, wid, hei, id);
 		this.handler = handler;
 	}
 
@@ -26,7 +26,7 @@ public class Player extends GameObject {
 		y = Game.clamp(y, 0, Game.HEIGHT - 32);
 		
 		collision();
-		handler.addObject(new Trail(x, y, 32, 32, ID.Trail, renderColor, 0.1F, handler));
+		handler.addObject(new Trail(x, y, width, height, ID.Trail, renderColor, 0.1F, handler));
 	}
 	
 	private void collision(){
@@ -50,10 +50,10 @@ public class Player extends GameObject {
 	@Override
 	public void render(Graphics g) {
 		g.setColor(renderColor);
-		g.fillRect((int)x, (int)y, 32, 32);
+		g.fillRect((int)x, (int)y, (int)width, (int)height);
 	}
 	
-	private Color renderColor = Color.WHITE;
+	private Color renderColor = Color.GREEN.darker();
 	
 	public int xSpeed = 0;
 	public int ySpeed = 0;

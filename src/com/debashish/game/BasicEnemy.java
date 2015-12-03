@@ -8,8 +8,8 @@ public class BasicEnemy extends GameObject {
 	
 	private Handler handler;
 	
-	public BasicEnemy(int x, int y, ID id, Handler handler) {
-		super(x, y, id);
+	public BasicEnemy(int x, int y, float wid, float hei, ID id, Handler handler) {
+		super(x, y, wid, hei, id);
 		this.handler = handler;
 		velX = (r.nextInt(2) + 5);
 		velY = (r.nextInt(2) + 5);
@@ -17,7 +17,7 @@ public class BasicEnemy extends GameObject {
 	
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle((int)x, (int)y, 16, 16);
+		return new Rectangle((int)x, (int)y, (int)width, (int)height);
 	}	
 
 	@Override
@@ -32,13 +32,13 @@ public class BasicEnemy extends GameObject {
 			velX *= -1;
 		}
 		
-		handler.addObject(new Trail(x, y, 16, 16, ID.Trail, Color.RED, 0.05F, handler));
+		handler.addObject(new Trail(x, y, width, height, ID.Trail, Color.RED, 0.05F, handler));
 	}
 
 	@Override
 	public void render(Graphics g){
 		g.setColor(Color.RED);
-		g.fillRect((int)x, (int)y, 16, 16);
+		g.fillRect((int)x, (int)y, (int)width, (int)height);
 	}
 
 }

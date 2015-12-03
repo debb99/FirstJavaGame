@@ -12,12 +12,10 @@ public class BossEnemy extends GameObject {
 	private Handler handler;
 	private int timer = 150;
 	private int timer2= 120;
-	private Game game;
 	
-	public BossEnemy(int x, int y, ID id, Handler handler, Game game) {
-		super(x, y, id);
+	public BossEnemy(int x, int y, float wid, float hei, ID id, Handler handler) {
+		super(x, y, wid, hei, id);
 		this.handler = handler;
-		this.game = game;
 		velX = 0;
 		velY = 2;
 		sprite = Toolkit.getDefaultToolkit().getImage(getClass().getResource("ActualBossTransparent.png"));
@@ -41,7 +39,7 @@ public class BossEnemy extends GameObject {
 			if(velX == 0) velX = 3;
 			if(timer2 <= 0){
 				if(r.nextInt(5) == 0){ //BULLET SPAWNS
-					handler.addObject(new BossBullet(x + 35, y + 85, ID.BasicEnemy, handler));
+					handler.addObject(new BossBullet(x + 35, y + 85, 16, 16, ID.BasicEnemy, handler));
 				}
 			} else timer2--; //moving horizontally
 		} else timer--; //moving vertically

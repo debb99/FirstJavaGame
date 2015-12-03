@@ -9,10 +9,14 @@ public abstract class GameObject {
 	protected ID id;
 	protected float velX, velY;
 	protected Random r;
+	protected float width;
+	protected float height;
 	
-	public GameObject(float f, float g, ID id){
+	public GameObject(float f, float g, float wid, float hei, ID id){
 		this.x = f;
 		this.y = g;
+		this.width = wid;
+		this.height = hei;
 		this.id = id;
 		this.r = new Random();
 	}

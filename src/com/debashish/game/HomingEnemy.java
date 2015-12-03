@@ -8,8 +8,8 @@ public class HomingEnemy extends GameObject{
 		private Handler handler;
 		private GameObject player;
 		
-		public HomingEnemy(float f, float g, ID id, Handler handler) {
-			super(f, g, id);
+		public HomingEnemy(int x, int y, float wid, float hei, ID id, Handler handler) {
+			super(x, y, wid, hei, id);
 			this.handler = handler;
 			for(int i = 0; i < handler.object.size(); i++){
 				if(handler.object.get(i).id == ID.Player){
@@ -20,7 +20,7 @@ public class HomingEnemy extends GameObject{
 		
 		@Override
 		public Rectangle getBounds() {
-			return new Rectangle((int)x, (int)y, 16, 16);
+			return new Rectangle((int)x, (int)y, (int)width, (int)height);
 		}	
 
 		@Override
@@ -45,13 +45,13 @@ public class HomingEnemy extends GameObject{
 				velX *= -1;
 			}
 			
-			handler.addObject(new Trail(x, y, 16, 16, ID.Trail, Color.PINK, 0.05F, handler));
+			handler.addObject(new Trail(x, y, width, height, ID.Trail, Color.PINK, 0.05F, handler));
 		}
 
 		@Override
 		public void render(Graphics g) {
 			g.setColor(Color.PINK);
-			g.fillRect((int)x, (int)y, 16, 16);
+			g.fillRect((int)x, (int)y, (int)width, (int)height);
 		}
 
 	}
