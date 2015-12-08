@@ -24,17 +24,17 @@ public class Spawn {
 			hud.setLevel(hud.getLevel() + 1);
 			
 			if(hud.getLevel() == 2){
-				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 16, 16, ID.BasicEnemy, handler));
-				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 16, 16, ID.BasicEnemy, handler));
+				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), 16, 16, ID.BasicEnemy, handler));
+				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), 16, 16, ID.BasicEnemy, handler));
 			}
 			if(hud.getLevel() == 3){
-				handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 16, 16, ID.FastEnemy, handler));
+				handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), 16, 16, ID.FastEnemy, handler));
 			}
 			if(hud.getLevel() == 4){
-				handler.addObject(new HomingEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 16, 16, ID.HomingEnemy, handler));
+				handler.addObject(new HomingEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), 16, 16, ID.HomingEnemy, handler));
 			}
 			if(hud.getLevel() == 5){
-				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 16, 16, ID.BasicEnemy, handler));
+				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), 16, 16, ID.BasicEnemy, handler));
 			}
 			if(hud.getLevel() == 8){
 				handler.clearEnemies();
@@ -42,12 +42,16 @@ public class Spawn {
 			}
 			if(hud.getLevel() == 11){
 				handler.clearEnemies();
-				handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 16, 16, ID.FastEnemy, handler));
-				handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 16, 16, ID.FastEnemy, handler));
-				handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 16, 16, ID.FastEnemy, handler));
-				handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 16, 16, ID.FastEnemy, handler));
-				handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 16, 16, ID.FastEnemy, handler));
-				handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 16, 16, ID.FastEnemy, handler));
+				handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), 16, 16, ID.FastEnemy, handler));
+				handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), 16, 16, ID.FastEnemy, handler));
+				handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), 16, 16, ID.FastEnemy, handler));
+				handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), 16, 16, ID.FastEnemy, handler));
+				handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), 16, 16, ID.FastEnemy, handler));
+				handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), 16, 16, ID.FastEnemy, handler));
+				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), 16, 16, ID.BasicEnemy, handler));
+				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), 16, 16, ID.BasicEnemy, handler));
+				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 16), r.nextInt(Game.HEIGHT - 16), 16, 16, ID.BasicEnemy, handler));
+				
 			}
 		}
 		
