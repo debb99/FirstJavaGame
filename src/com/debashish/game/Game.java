@@ -106,7 +106,7 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	private void tick(){
-		if(!paused){
+		if(!isPaused()){
 			if(gameState == STATE.Game){
 				hud.tick();
 				handler.tick();
@@ -145,7 +145,7 @@ public class Game extends Canvas implements Runnable{
 			menu.render(g2);
 		}
 		
-		if(paused){
+		if(isPaused()){
 			g2.setFont(new Font(Font.DIALOG_INPUT, Font.ITALIC + Font.BOLD, 70));
 			g2.setColor(Color.WHITE);
 			Menu.drawCenteredString("GAME PAUSED", 0, 0, WIDTH, HEIGHT, g2);
@@ -173,7 +173,15 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public static void togglePaused(){
-		paused = !paused;
+		setPaused(!isPaused());
+	}
+
+	public static boolean isPaused() {
+		return paused;
+	}
+
+	public static void setPaused(boolean paused) {
+		Game.paused = paused;
 	}
 
 }
